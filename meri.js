@@ -3,13 +3,13 @@ function navigateTo(abc) {
 }
 
 
-function myJSX() {
+// function myJSX() {
 
-  let name = "hadi raxa"
+//   let name = "hadi raxa"
 
 
-  return <div>
+//   return <div>
 
-    <h1>am here {name} </h1>
-  </div>
-}
+//     <h1>am here {name} </h1>
+//   </div>
+// }
