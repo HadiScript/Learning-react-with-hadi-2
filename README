@@ -1,0 +1,14 @@
+day1 =>
+simple html,css and javascript 
+(concepts convered => what is Dom? how it works? and what is virtual Dom?);
+
+
+day2 =>
+setup reactjs, folder structure,components, props, states, styling 
+(concepts convered => Dom? how component works? props, children, state, setState, rendering conditional rendering, conditional styling) 
+
+
+day3 =>
+setup reactjs, more examples, events, bootstrap, simple dashboard project, packages, simple useEffects 
+
+
