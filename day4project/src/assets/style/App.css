@@ -1,0 +1,14 @@
+body {
+  color: #0c356a !important;
+}
+
+.header-icons {
+  font-size: 10px !important;
+  color: #0c356a;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #0c356a;
+}

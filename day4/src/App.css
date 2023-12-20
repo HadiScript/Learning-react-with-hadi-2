@@ -1,0 +1,8 @@
+.myLinks {
+  text-decoration: none;
+  color: #5d3587;
+}
+
+.active-myLinks {
+  font-weight: 600;
+}
