@@ -7,7 +7,7 @@ const Cover = () => {
   return (
     //     #0C356A
     // #000000
-    <div style={{ height: "100vh", backgroundImage: "linear-gradient(to right top, #000000, #0C356A, white, white, white)" }}>
+    <div style={{ height: "100vh" }}>
       <TopHeader />
       <div style={{ height: "90%" }} className="d-flex justify-content-center align-items-center">
         <span className="display-1 ">

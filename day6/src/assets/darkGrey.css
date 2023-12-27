@@ -1,0 +1,38 @@
+/* dg - darkBlue */
+
+._dg-primary {
+  color: #0c0a09 !important;
+}
+
+._dg-secondary {
+  color: #1d267d !important ;
+}
+
+.main-dg_mainHeading {
+  color: #0c0a09;
+}
+
+.main-dg_mainHeading span {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.main-dg_mainHeading small {
+  font-style: italic;
+}
+
+.main-dg_layout .ant-menu .ant-menu-item {
+  color: #0c0a09 !important;
+}
+
+.dg_active {
+  font-weight: 600;
+  border-radius: 0px !important;
+  border-right: 2px solid #0c0a09;
+  color: red !important;
+}
+
+.ant-float-btn-body {
+  background-color: #0c0a09 !important;
+  color: white !important;
+}

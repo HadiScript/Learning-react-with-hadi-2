@@ -1,0 +1,38 @@
+/* dg - darkBlue */
+
+._dg-primary {
+  color: #2e1065 !important;
+}
+
+._dg-secondary {
+  color: #1d267d !important ;
+}
+
+.main-dg_mainHeading {
+  color: #2e1065;
+}
+
+.main-dg_mainHeading span {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.main-dg_mainHeading small {
+  font-style: italic;
+}
+
+.main-dg_layout .ant-menu .ant-menu-item {
+  color: #2e1065 !important;
+}
+
+.dg_active {
+  font-weight: 600;
+  border-radius: 0px !important;
+  border-right: 2px solid #2e1065;
+  color: red !important;
+}
+
+.ant-float-btn-body {
+  background-color: #2e1065 !important;
+  color: white !important;
+}

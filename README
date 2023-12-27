@@ -15,15 +15,23 @@ day4 =>
 setup reactjs, react router dom, prev examples to create new dashboard;
 
 
-day4 =>
+day4, day5 =>
 Dashboard Project -> bootstrap, ant design
 
 
 day5 => dash cont...
 day6 => antd...
-day7 => question answer...
+day7 => question answer... (pending)
 
-day 8,9 => hooks advance (useContext, useReducer, UseEffect, )
+
+day7 => hooks  
+useContext (state)
+useReducer 
+useEffect** 
+
+
+
+day 8,9 => hooks advance (useContext, useReducer, UseEffect, ) (modify)
 
 day10 => postman api server test
 day11 => ticketing system 

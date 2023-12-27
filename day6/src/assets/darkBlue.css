@@ -1,0 +1,40 @@
+/* db - darkBlue */
+
+._db-primary {
+  color: #0c4a6e !important;
+}
+
+._db-secondary {
+  color: #1d267d !important ;
+}
+
+.main-db_mainHeading {
+  color: #0c4a6e;
+}
+
+.main-db_mainHeading span {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.main-db_mainHeading small {
+  font-style: italic;
+}
+
+.main-db_layout .ant-menu .ant-menu-item {
+  color: #0c4a6e !important;
+}
+
+.db_active {
+  font-weight: 600;
+  border-radius: 0px !important;
+  border-right: 2px solid #0c4a6e;
+  color: red !important;
+}
+
+.ant-float-btn-body {
+  background-color: #0c4a6e !important;
+  color: white !important;
+}
+
+
