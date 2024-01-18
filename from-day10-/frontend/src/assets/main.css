@@ -1,0 +1,155 @@
+@font-face {
+  font-family: "RethinkSans";
+  src: url("./fonts/RethinkSans-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+/* sss  */
+body {
+  font-family: "RethinkSans", sans-serif !important;
+}
+
+.zinc-800 {
+  color: #18181b;
+}
+
+.zinc-600 {
+  color: #52525b;
+}
+
+/* antd  */
+.ant-input:focus {
+  border-color: #000000 !important;
+}
+
+.ant-input:hover {
+  border-color: #000000 !important;
+}
+
+.ant-input-password:focus {
+  border-color: #000000 !important;
+}
+
+.ant-input-password:hover {
+  border-color: #000000 !important;
+}
+
+.ant-btn:hover {
+  border-color: #000000 !important;
+}
+
+.withoutQuestion {
+  border: 1px solid red !important;
+}
+
+.myBtn {
+  background-color: black;
+  color: white;
+}
+
+.deleteBtn {
+  background-color: black;
+  color: white;
+}
+
+.deleteBtn:hover {
+  color: rgb(246, 86, 86) !important;
+}
+
+.dottedBtn {
+  border-style: dashed !important;
+  border: 1px solid black;
+}
+
+.lightgrey-bg {
+  background-color: #d3d3d324;
+}
+
+/* --------------- */
+
+/* db - darkBlue */
+
+._db-900 {
+  color: #083344 !important;
+}
+
+._db-light {
+  color: #93c5fd;
+}
+
+.main-db_layout ._heading {
+  margin-bottom: 50px !important;
+  color: #083344;
+}
+
+.main-db_layout ._heading b {
+  font-size: 20px;
+}
+
+.main-db_layout ._heading .its-icon {
+  background-color: #93c5fd;
+  padding: 10px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  font-size: 25px !important;
+  text-align: center;
+}
+
+.main-db_layout ._active {
+  font-weight: 600;
+  border-radius: 0px !important;
+  border-right: 2px solid #083344;
+  color: #083344 !important;
+  background-color: #dbeafe6c !important;
+}
+
+.main-db_layout ._active .its-icon {
+  background-color: #93c5fd;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.main-db_layout .detailed-card {
+  color: #083344 !important;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.main-db_layout .light-bg {
+  background-color: #93c4fd1c;
+}
+
+.main-db_layout .detailed-card .its-icon {
+  font-size: 30px !important;
+  background-color: #93c5fd;
+}
+
+.main-db_layout .question-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #93c4fd66;
+  color: #083344;
+}
+
+.nav-link {
+  color: #52525b !important;
+}
+
+._link {
+  text-decoration: none !important;
+}
+
+.its-icon {
+  background-color: #f2f2f27d;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.ant-float-btn-body {
+  background-color: #164e63 !important;
+  color: white !important;
+}

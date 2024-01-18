@@ -1,0 +1,57 @@
+.fixedColumn {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.leftColumn {
+  left: 0;
+  width: 20%; /* Adjust as per md={4} */
+}
+
+.centerColumn {
+  padding: 10px;
+  margin-left: 16.6%;
+  /* Adjust as per left column width */
+  /* margin-right: 20%; Adjust as per right column width */
+}
+
+@media screen and (max-width: 768px) {
+  /* Adjust breakpoint as needed */
+  .leftColumn,
+  .rightColumn {
+    display: none;
+  }
+  .centerColumn {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.ant-menu-item-selected {
+  color: #000000e0 !important;
+  background-color: transparent !important;
+  border-radius: 0px !important;
+}
+
+.ant-drawer-body {
+  padding: 0px !important;
+}
+
+/* scrollbar */
+.customScrollbar {
+  max-height: 50vh;
+  overflow-y: auto;
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #0d1282; /* For Firefox */
+}
+
+.customScrollbar::-webkit-scrollbar {
+  width: 4px; /* For Chrome, Safari, and Opera */
+}
+
+.customScrollbar::-webkit-scrollbar-thumb {
+  background-color: #0d1282; /* For Chrome, Safari, and Opera */
+  border-radius: 10px;
+}
