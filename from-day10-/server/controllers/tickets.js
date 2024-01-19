@@ -536,7 +536,7 @@ const ticketByIdClient = async (req, res) => {
   const { _id } = req.params;
 
   try {
-    const singleTicket = await Ticket.findOne({ _id, status : "Open" }).populate("createdBy").populate("category").populate("comments");
+    const singleTicket = await Ticket.findOne({ _id, status: "Open" }).populate("createdBy").populate("category").populate("comments");
 
     if (!singleTicket) {
       return res.status(404).json({ message: "Ticket not found" });
@@ -545,6 +545,28 @@ const ticketByIdClient = async (req, res) => {
     console.log(singleTicket);
 
     return res.json({ ok: true, singleTicket });
+  } catch (error) {
+    console.log(error);
+    sendError(res);
+  }
+};
+
+const ticketById = async (req, res) => {
+  const { _id } = req.params;
+
+  try {
+    const singleTicket = await Ticket.findById({ _id })
+      .populate("createdBy")
+      .populate("category")
+      .populate("comments")
+      .populate("movements.movedTo", "-password")
+      .populate("pickedBy", "-password");
+
+    if (!singleTicket) {
+      return res.status(404).json({ message: "Ticket not found" });
+    }
+
+    return res.json(singleTicket);
   } catch (error) {
     console.log(error);
     sendError(res);
@@ -572,4 +594,6 @@ module.exports = {
   assignToMe,
   allReponedTicketsOf_a_Agent,
   ticketByIdClient,
+
+  ticketById,
 };

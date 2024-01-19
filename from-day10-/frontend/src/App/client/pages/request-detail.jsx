@@ -8,7 +8,7 @@ import ClientComments from "../../components/ClientComments";
 
 const { useBreakpoint } = Grid;
 
-const RequestDetail = () => {
+const RequestDetail = ({}) => {
   const { id } = useParams();
 
   const { loading, singleItem, doComment, comment, setComment, deleteComment } = __useSingleTicket(id);

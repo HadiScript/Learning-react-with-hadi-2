@@ -24,6 +24,7 @@ import AgentRoutes from "./agent/pages/agent-routes";
 import AgentDashboard from "./agent/pages/agent-dashboard";
 import Buckets from "./agent/pages/buckets";
 import PickTickets from "./agent/pages/pick-tickets";
+import OpenDetailTicket from "./agent/pages/open-detail-ticket";
 
 const App = () => {
   return (
@@ -45,10 +46,8 @@ const App = () => {
           <Route path="dashboard" element={<AgentDashboard />} />
           <Route path="bucket" element={<Buckets />} />
           <Route path="picked-tickets" element={<PickTickets />} />
+          <Route path="detail/:id" element={<OpenDetailTicket />} />
         </Route>
-
-
-
       </Routes>
     </BrowserRouter>
   );

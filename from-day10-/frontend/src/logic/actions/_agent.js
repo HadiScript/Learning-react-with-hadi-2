@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { _useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
 
 export const useBucket = () => {
   const [auth] = _useAuth();
@@ -33,6 +34,7 @@ export const useBucket = () => {
     setLoading(true);
     try {
       const res = await axios.put("/ticket/pick", { ticketId });
+      fetchOpenTickets();
     } catch (error) {
       console.log(error);
     } finally {
@@ -57,7 +59,7 @@ export const usePickTickets = () => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const fetchMyPickTickets = async () => {
+  const fetchMyPickTickets = useCallback(async () => {
     setLoading(true);
     try {
       const res = await axios.get("/ticket/my-picks");
@@ -68,16 +70,58 @@ export const usePickTickets = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [authToken]);
 
   useEffect(() => {
-    if (authToken) {
-      fetchMyPickTickets();
-    }
-  }, [authToken]);
+    fetchMyPickTickets();
+  }, [fetchMyPickTickets]);
 
   return {
     loading,
     list,
+  };
+};
+
+export const useSingleTicket = (id) => {
+  const [auth] = _useAuth();
+  const authToken = auth && auth?.token;
+
+  const [ticket, setTicket] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchingSingleTicket = async () => {
+      setLoading(true);
+      try {
+        const res = await axios.get(`/ticket/single/${id}`);
+        setTicket(res.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id && authToken) fetchingSingleTicket();
+  }, [id, authToken]);
+
+  const EscTicket = async (ticketId, why) => {
+    if (!why) {
+      return toast.error("Please write something..");
+    }
+    setLoading(true);
+    try {
+      const res = await axios.put("ticket/escalate", { ticketId, why });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return {
+    loading,
+    ticket,
+    EscTicket,
   };
 };
