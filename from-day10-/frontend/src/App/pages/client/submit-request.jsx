@@ -2,10 +2,10 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { DiffOutlined } from "@ant-design/icons";
-import PanelHeading from "../../components/PanelHeading";
 import { Button, Card, Form, Input, Select } from "antd";
 import { _useCategories } from "../../../logic/actions/_categories";
 import { useNavigate } from "react-router-dom";
+import PanelHeading from "../../components/common/PanelHeading";
 
 const { Option } = Select;
 

@@ -1,10 +1,10 @@
-import { Avatar, Button, Divider, Input, List } from "antd";
-import React, { useState } from "react";
-import { _useAuth } from "../../logic/context/AuthContext";
-import { CommentOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { useState } from "react";
+import { Button, Divider, Input, List } from "antd";
+import { _useAuth } from "../../../logic/context/AuthContext";
+import { CommentOutlined, DeleteOutlined } from "@ant-design/icons";
 import ClientCommentReplies from "./ClientCommentReplies";
 
-const ClientComments = ({ loading, doComment, comment, setComment, list, deleteComment }) => {
+const CommentsSection = ({ loading, doComment, comment, setComment, list, deleteComment }) => {
   const [auth] = _useAuth();
 
   const [open, setOpen] = useState(false);
@@ -57,7 +57,6 @@ const ClientComments = ({ loading, doComment, comment, setComment, list, deleteC
               ]}
             >
               <List.Item.Meta
-                avatar={<Avatar src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`} />}
                 title={<a className="text-dark">{item.createdBy}</a>}
                 // title={<a className="text-dark">{item.createdBy.name}</a>}
                 description={[<span className="text-secondary">{item.content}</span>]}
@@ -72,4 +71,4 @@ const ClientComments = ({ loading, doComment, comment, setComment, list, deleteC
   );
 };
 
-export default ClientComments;
+export default CommentsSection;

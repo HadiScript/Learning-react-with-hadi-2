@@ -1,18 +1,19 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
+
+import Layout from "../../components/layout/Layout";
 import Redirecting from "../../../logic/utils/Redirecting";
-import { AuthContext } from "../../../logic/context/AuthContext";
-import ClientLayout from "../layout";
+import { _useAuth } from "../../../logic/context/AuthContext";
 
 const ClientRoutes = ({ user }) => {
-  const [auth] = useContext(AuthContext);
+  const [auth] = _useAuth();
   const [loading, setLoading] = useState(true);
 
   const fetchingCurrectUser = async () => {
     setLoading(false);
     try {
-      const res = await axios.get("auth/current-agent");
+      const res = await axios.get("auth/current-client");
     } catch (error) {
       console.log(error);
     }
@@ -27,9 +28,9 @@ const ClientRoutes = ({ user }) => {
   return loading ? (
     <Redirecting />
   ) : (
-    <ClientLayout>
+    <Layout>
       <Outlet />
-    </ClientLayout>
+    </Layout>
   );
 };
 

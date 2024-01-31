@@ -1,9 +1,9 @@
 import React from "react";
-import PanelHeading from "../../components/PanelHeading";
 import { useBucket } from "../../../logic/actions/_agent";
 import { Button } from "antd";
 import { ReloadOutlined } from "@ant-design/icons";
-import AgentBucketRow from "../../components/AgentBucketRow";
+import PanelHeading from "../../components/common/PanelHeading";
+import AgentBucketRow from "../../components/common/AgentBucketRow";
 
 const Buckets = () => {
   const { loading, list, fetchOpenTickets, pickAnTicket } = useBucket();

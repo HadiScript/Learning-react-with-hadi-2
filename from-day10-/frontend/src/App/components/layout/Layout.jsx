@@ -1,15 +1,15 @@
 import { Col, Row } from "antd";
-import LeftCol from "./LeftCol";
+import Sidebar from "./Sidebar";
 import LayoutHeader from "./LayoutHeader";
 
 import "../../../assets/layout.css";
 
-const ClientLayout = ({ children }) => {
+const Layout = ({ children }) => {
   return (
     <>
       <Row style={{ minHeight: "100vh" }} className={"main-db_layout"}>
         <Col md={4} xs={0} className="fixedColumn leftColumn border-end">
-          <LeftCol />
+          <Sidebar />
         </Col>
         <Col md={20} xs={24} className="centerColumn ">
           <LayoutHeader />
@@ -20,4 +20,4 @@ const ClientLayout = ({ children }) => {
   );
 };
 
-export default ClientLayout;
+export default Layout;

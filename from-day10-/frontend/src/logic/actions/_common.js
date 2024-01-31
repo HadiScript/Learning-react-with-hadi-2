@@ -3,11 +3,13 @@ import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import Cookies from "js-cookie";
 import Crypto from "crypto-js";
+import { useNavigate } from "react-router-dom";
 
 let key = "heloBhai97Kiya98Hai99hei!sl";
 
 export const _useLogin = () => {
   const [auth, setAuth] = useContext(AuthContext);
+  const router = useNavigate();
 
   const [loginData, setLoginData] = useState({ email: "clientA@gmail.com", password: "hadi.." });
   const [loading, setLoading] = useState(false);
@@ -39,6 +41,7 @@ export const _useLogin = () => {
       user: null,
       token: "",
     });
+    router("/");
   };
 
   return {

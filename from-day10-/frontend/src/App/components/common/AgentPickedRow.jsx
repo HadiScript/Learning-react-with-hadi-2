@@ -1,11 +1,13 @@
 import React from "react";
-import { use2ndSLA } from "../../logic/hook/use2ndSla";
+import { use2ndSLA } from "../../../logic/hook/use2ndSla";
 import { FolderOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const AgentPickedRow = ({ x, index }) => {
+const AgentPickedRow = ({ x, index, from }) => {
   const time = use2ndSLA(x.pickedAt);
   const router = useNavigate();
+
+  const path = useLocation().pathname;
 
   return (
     <tr>
@@ -21,28 +23,9 @@ const AgentPickedRow = ({ x, index }) => {
           {/* {from !== "handoverTc" && from !== "assignTc" ? elapsedTime : x.secondSLABreach ? <span className="breached px-3">Yes</span> : "-"} */}
         </span>
       </td>
-      <td onClick={() => router(`/agent/detail/${x._id}`)}>
+      <td onClick={() => router(!path.includes("handover") ? `/agent/detail/${x._id}` : `/agent/handover/detail/${x._id}`)}>
         <FolderOutlined />
       </td>
-      {/* <th>
-    {from === "pickedTc" && (
-      <Link to={`/agent/single/${x._id}`}>
-        <BiLinkExternal role="button" />
-      </Link>
-    )}
-
-    {from === "handoverTc" && (
-      <Link to={`/agent/ho/single/${x._id}`}>
-        <BiLinkExternal role="button" />
-      </Link>
-    )}
-
-    {from === "assignTc" && (
-      <Link to={`/agent/ho/single/${x._id}`}>
-        <BiLinkExternal role="button" />
-      </Link>
-    )}
-  </th> */}
     </tr>
   );
 };

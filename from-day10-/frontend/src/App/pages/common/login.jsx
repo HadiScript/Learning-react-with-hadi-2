@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { _useLogin } from "../../logic/actions/_common";
-import { AuthContext } from "../../logic/context/AuthContext";
+import { _useLogin } from "../../../logic/actions/_common";
+import { AuthContext } from "../../../logic/context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {

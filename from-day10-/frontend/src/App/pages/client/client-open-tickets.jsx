@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-
-import PanelHeading from "../../components/PanelHeading";
-import { FolderOpenOutlined, FolderOutlined } from "@ant-design/icons";
-import { __useOpenTickets } from "../../../logic/actions/_client-ticket";
 import { Link } from "react-router-dom";
 
+import { FolderOpenOutlined } from "@ant-design/icons";
+import { __useGetList, __useOpenTickets } from "../../../logic/actions/_client-ticket";
+import PanelHeading from "../../components/common/PanelHeading";
+
 const ClientOpenTickets = () => {
-  const { loading, list } = __useOpenTickets();
+  // const { loading, list } = __useOpenTickets();
+
+  const { loading, list } = __useGetList("ticket/my-opens");
 
   return (
     <>

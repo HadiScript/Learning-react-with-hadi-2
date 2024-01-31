@@ -1,7 +1,7 @@
 import { CloseOutlined, LogoutOutlined, MenuOutlined } from "@ant-design/icons";
 import { Drawer, Grid } from "antd";
-import React, { useState } from "react";
-import LeftCol from "./LeftCol";
+import { useState } from "react";
+import Sidebar from "./Sidebar";
 
 const { useBreakpoint } = Grid;
 
@@ -28,7 +28,7 @@ const LayoutHeader = () => {
         open={drawerVisibility}
         extra={<CloseOutlined onClick={() => setDrawerVisibility(false)} />}
       >
-        <LeftCol />
+        <Sidebar />
       </Drawer>
     </>
   );

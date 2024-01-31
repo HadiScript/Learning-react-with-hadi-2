@@ -365,7 +365,7 @@ const createTicket = async (req, res, next) => {
 
 const ClientsOpenTickets = async (req, res, next) => {
   try {
-    const _tickets = await Ticket.find({ status: "Open", createdBy: req.user.id }).populate("category");
+    const _tickets = await Ticket.find({ status: { $in: ["Open", "InProgress"] }, createdBy: req.user.id }).populate("category");
     res.status(200).json({ tickets: _tickets });
   } catch (error) {
     next(error);
@@ -374,7 +374,7 @@ const ClientsOpenTickets = async (req, res, next) => {
 
 const ClientsInProgressTickets = async (req, res, next) => {
   try {
-    const _tickets = await Ticket.find({ status: "In Progress", createdBy: req.user.id });
+    const _tickets = await Ticket.findById({ status: "In Progress", createdBy: req.user.id });
     res.status(200).json({ tickets: _tickets });
   } catch (error) {
     next(error);
@@ -542,7 +542,7 @@ const ticketByIdClient = async (req, res) => {
       return res.status(404).json({ message: "Ticket not found" });
     }
 
-    console.log(singleTicket);
+    console.log({ singleTicket });
 
     return res.json({ ok: true, singleTicket });
   } catch (error) {

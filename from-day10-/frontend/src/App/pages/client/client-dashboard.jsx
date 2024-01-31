@@ -1,4 +1,4 @@
-import ClientLayout from "../layout";
+import ClientLayout from "../../client/layout";
 
 const ClientDashboard = () => {
   return <>ClientDashboard</>;

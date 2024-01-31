@@ -46,9 +46,9 @@ router.put("/escalate", verifyToken, isAgent, escalateTickets);
 router.post("/create", verifyToken, isClient, createTicket);
 router.put("/add-comment", verifyToken, isClient, addCommentByClient);
 router.get("/my-opens", verifyToken, isClient, ClientsOpenTickets);
-router.get("/my-in-progress", verifyToken, isClient, ClientsInProgressTickets);
+// router.get("/my-in-progress", verifyToken, isClient, ClientsInProgressTickets);
 router.put("/reopen-ticket/:ticketId", verifyToken, isClient, reopenTicket);
-router.get("/single/:_id", verifyToken, isClient, ticketByIdClient);
+router.get("/client-single/:_id", verifyToken, isClient, ticketByIdClient);
 
 // -------------------- for both
 router.put("/update-to-resolved/:ticketId", verifyToken, updateTicketToResolved);

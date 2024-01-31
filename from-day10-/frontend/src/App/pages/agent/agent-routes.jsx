@@ -1,12 +1,12 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import Redirecting from "../../../logic/utils/Redirecting";
-import { AuthContext } from "../../../logic/context/AuthContext";
-import AgentLayout from "../layout";
+import Layout from "../../components/layout/Layout";
+import { _useAuth } from "../../../logic/context/AuthContext";
 
 const AgentRoutes = ({ user }) => {
-  const [auth] = useContext(AuthContext);
+  const [auth] = _useAuth();
   const [loading, setLoading] = useState(true);
 
   const fetchingCurrectUser = async () => {
@@ -27,9 +27,9 @@ const AgentRoutes = ({ user }) => {
   return loading ? (
     <Redirecting />
   ) : (
-    <AgentLayout>
+    <Layout>
       <Outlet />
-    </AgentLayout>
+    </Layout>
   );
 };
 
