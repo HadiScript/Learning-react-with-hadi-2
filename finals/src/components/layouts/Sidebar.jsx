@@ -1,7 +1,7 @@
 import React from "react";
 import { AgentLinks } from "./navLinks";
 import Link from "next/link";
-import useActive from "@/hooks/useActive";
+import useActive from "../../hooks/useActive";
 
 const Sidebar = ({ from }) => {
   return (

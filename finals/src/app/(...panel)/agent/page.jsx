@@ -1,4 +1,4 @@
-import Heading from "@/components/common/Heading";
+import Heading from "../../../components/common/Heading";
 import React from "react";
 import { Compass } from "react-feather";
 

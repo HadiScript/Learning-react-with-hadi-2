@@ -1,6 +1,7 @@
-import Heading from "@/components/common/Heading";
 import React from "react";
 import { Terminal } from "react-feather";
+// import Heading from "../../../../../components/common/Heading";
+import Heading from "@/components/common/Heading";
 
 const PickedTickets = () => {
   return (

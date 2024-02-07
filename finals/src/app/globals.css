@@ -5,6 +5,11 @@ body {
   padding: 0px !important;
   font-size: 15px;
 }
+
+._link {
+  text-decoration: none;
+}
+
 .main-layout {
   min-height: 100vh !important;
 }
@@ -55,11 +60,24 @@ tr {
   color: rgba(255, 255, 255, 0.747) !important;
 }
 
-.searchinput {
+.myInput {
   background-color: transparent !important;
   color: rgba(255, 255, 255, 0.747) !important;
   outline: none;
-  border: 1px solig  rgba(255, 255, 255, 0.747) !important;
+  border: 1px solig rgba(255, 255, 255, 0.747) !important;
   border-radius: 10px;
   min-width: 300px;
+}
+
+.myBtnSecondary {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white !important;
+  border: 1px solid white;
+}
+
+.myBtnSecondary:hover {
+  color: rgb(136, 136, 255) !important;
+  border: 1px solid rgb(136, 136, 255);
 }

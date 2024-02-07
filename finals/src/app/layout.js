@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "Next.js",
@@ -9,7 +10,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Toaster position="top-center" />
+
+        {children}
+      </body>
     </html>
   );
 }
