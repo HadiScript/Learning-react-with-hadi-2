@@ -8,8 +8,8 @@ import { useRouter } from "next/navigation";
 
 const initValues = {
   name: "",
-  password: "",
   email: "",
+  password: "",
 };
 
 export const useCommon = () => {
@@ -28,7 +28,6 @@ export const useCommon = () => {
     setLoading(true);
     try {
       const { data } = await axios.post(`${API}/auth/signin`, loginData, { withCredentials: "true" });
-
       router.push("/");
     } catch (error) {
       console.log(error);

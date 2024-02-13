@@ -21,6 +21,7 @@ const {
   assignToMe,
   allReponedTicketsOf_a_Agent,
   ticketDetail,
+  gettingComments,
 } = require("../controllers/tickets");
 
 const router = express.Router();
@@ -55,6 +56,7 @@ router.put("/update-to-resolved/:ticketId", verifyToken, updateTicketToResolved)
 // -------------------- for any one
 router.get("/resolved-tickets", verifyToken, resolvedTickets);
 router.get("/detail/:ticketId", verifyToken, ticketDetail);
+router.get("/comments/:ticketId", verifyToken, gettingComments);
 
 // -------------------- admins
 router.get("/all-tickets", verifyToken, allTickerts);

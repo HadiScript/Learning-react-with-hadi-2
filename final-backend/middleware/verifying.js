@@ -3,6 +3,7 @@ const errorHandler = require("./errorHandler");
 const User = require("../models/Users");
 
 const verifyToken = (req, res, next) => {
+  // console.log(req.headers.session, "here")
   const token = req.session.token;
   if (!token) next(errorHandler(401, "Not Authorized"));
 

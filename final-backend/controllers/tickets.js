@@ -73,7 +73,12 @@ const pickTicket = async (req, res, next) => {
 
 const pickedTicketListOfAgent = async (req, res, next) => {
   try {
-    const _tickets = await Ticket.find({ status: "In Progress", pickedBy: req.user.id, currentAgent: req.user.id, movements: { $size: 0 } });
+    const _tickets = await Ticket.find({
+      status: "In Progress",
+      pickedBy: req.user.id,
+      currentAgent: req.user.id,
+      movements: { $size: 0 },
+    });
 
     res.status(200).json({ tickets: _tickets });
   } catch (error) {
@@ -474,9 +479,10 @@ const resolvedTickets = async (req, res, next) => {
 };
 
 const ticketDetail = async (req, res, next) => {
+  const { ticketId } = req.params;
   try {
     const user = await User.findById({ _id: req.user.id });
-    const detail = await Ticket.findById({ _id: req.user.id });
+    const detail = await Ticket.findById({ _id: ticketId });
 
     if (user.role === "agent") {
       return res.json({ detail });
@@ -493,6 +499,17 @@ const ticketDetail = async (req, res, next) => {
 
       return res.json({ detail });
     }
+  } catch (error) {
+    console.error("Error updating ticket status:", error);
+    return res.status(500).json({ ok: false, error: "Internal Server Error" });
+  }
+};
+
+const gettingComments = async (req, res, next) => {
+  try {
+    const data = await Ticket.find({ _id: req.params.ticketId }).select("comments").populate("comments");
+
+    res.json({ comments:data });
   } catch (error) {
     console.error("Error updating ticket status:", error);
     return res.status(500).json({ ok: false, error: "Internal Server Error" });
@@ -577,4 +594,5 @@ module.exports = {
   assignToMe,
   allReponedTicketsOf_a_Agent,
   ticketDetail,
+  gettingComments,
 };

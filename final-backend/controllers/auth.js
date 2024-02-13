@@ -71,6 +71,7 @@ const currentUser = async (req, res, next) => {
       name: _user.name,
       email: _user.email,
       role: _user.role,
+      _id : _user._id
     };
     res.status(201).json({ msg: "hi", user });
   } catch (error) {

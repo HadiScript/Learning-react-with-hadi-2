@@ -72,4 +72,5 @@ detail: GET /detail/:ticketId
 comments func: same as i wrote above
 resolved:same as i wrote above
 
-Escalate Ticket: PUT ./escalate
+Escalate Ticket: PUT /escalate
+My Pick Ticket: Get /my-picks

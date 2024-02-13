@@ -11,7 +11,6 @@ const cookieSession = require("cookie-session");
 const PORT = process.env.PORT || 5000;
 
 const app = express();
-app.set("trust proxy", true);
 console.log(process.env.NODE_ENV);
 
 app.use(logger);
@@ -20,6 +19,7 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
+// app.set("trust proxy", true);
 app.use(
   cookieSession({
     signed: false,

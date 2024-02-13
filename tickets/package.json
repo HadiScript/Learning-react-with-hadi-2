@@ -1,6 +1,6 @@
 {
-  "name": "finals",
-  "version": "0.1.2",
+  "name": "tickets",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -16,8 +16,7 @@
     "react-bootstrap": "^2.10.0",
     "react-dom": "^18",
     "react-feather": "^2.0.10",
-    "react-hot-toast": "^2.4.1",
-    "react-loader-spinner": "^6.1.6"
+    "react-hot-toast": "^2.4.1"
   },
   "devDependencies": {
     "eslint": "^8",
