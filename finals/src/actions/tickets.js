@@ -5,6 +5,7 @@ import { API } from "./api";
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Errs } from "@/helpers/Errs";
+import toast from "react-hot-toast";
 
 export const useBucket = () => {
   const [list, setList] = useState([]);
@@ -117,7 +118,7 @@ export const useSingleTicket = (id) => {
 };
 
 export const useAvailableAgents = (isOpen) => {
-  const router = useNavigate();
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [list, setList] = useState([]);
 
@@ -146,9 +147,9 @@ export const useAvailableAgents = (isOpen) => {
   const handoverTc = async (ticketId, newAgentId) => {
     setLoading(true);
     try {
-      const res = await axios.put(`${API}ticket/handover-ticket`, { ticketId, newAgentId, reason }, { withCredentials: true });
-      toast.success(`Moved to ${newAgentId}`);
-      router("/agent/picked-tickets");
+      const res = await axios.put(`${API}/ticket/handover-ticket`, { ticketId, newAgentId, reason }, { withCredentials: true });
+      router.push("/agent/tickets/picked");
+      toast.success(`Handover to ${newAgentId}`);
     } catch (error) {
       console.log(error);
     } finally {
@@ -188,5 +189,41 @@ export const usePickTickets = () => {
   return {
     loading,
     list,
+  };
+};
+
+export const ResolveTickets = async (x) => {
+  try {
+    await axios.put(`${API}/ticket/update-to-resolved/${x}`, {}, { withCredentials: true });
+    toast.success("ticket has been resolved");
+  } catch (error) {
+    Errs(error);
+    console.log(error);
+  }
+};
+
+export const useResolvedTickets = () => {
+  const [loading, setLoading] = useState(false);
+  const [list, setList] = useState([]);
+
+  const fetchingResolvedTickets = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(`${API}/ticket/resolved-tickets`, { withCredentials: true });
+      setList(res?.data.tickets);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchingResolvedTickets();
+  }, [fetchingResolvedTickets]);
+
+  return {
+    list,
+    loading,
   };
 };

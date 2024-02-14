@@ -1,4 +1,4 @@
-import { Cast, Compass, LogOut, ShoppingBag, Terminal, User, Wind } from "react-feather";
+import { Cast, Check, Compass, LogOut, ShoppingBag, Terminal, User, Wind } from "react-feather";
 
 export const AgentLinks = [
   {
@@ -33,6 +33,13 @@ export const AgentLinks = [
     icon: <Cast size={18} />,
     topGap: false,
   },
+  {
+    path: "/agent/tickets/resolved",
+    title: "Resolved Tickets",
+    icon: <Check size={18} />,
+    topGap: true,
+  },
+
   {
     path: "",
     title: "Profile",

@@ -73,7 +73,7 @@ const currentUser = async (req, res, next) => {
       role: _user.role,
       _id : _user._id
     };
-    res.status(201).json({ msg: "hi", user });
+    res.status(201).json({ msg: "hi", user });    
   } catch (error) {
     next(error);
   }

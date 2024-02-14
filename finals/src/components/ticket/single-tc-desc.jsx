@@ -15,14 +15,14 @@ const ItsBox = ({ title, value }) => {
 
 
 
-const SingleTcDesc = ({ from, data }) => {
+const SingleTcDesc = ({ from, data, id }) => {
 
   const [readmore, setReadmore] = useState(30)
 
 
   return (
     <div>
-      <TcActions />
+      {/* <TcActions id={id} /> */}
 
       <div className='d-flex justify-content-start flex-wrap align-items-center gap-4 my-3'>
         <ItsBox title={"Category"} value={data.category} />
@@ -40,7 +40,7 @@ const SingleTcDesc = ({ from, data }) => {
         <h3>Description</h3>
         <span>{data.description?.substring(0, readmore)} <i className='text-primary' onClick={() => setReadmore(1000)} role='button'>read more</i></span>
       </div>
-      
+
     </div>
   )
 }

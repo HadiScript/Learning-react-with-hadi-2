@@ -41,7 +41,7 @@ export const AgentTcTable = ({ from, data, loading, onClick }) => {
               <td>{x.category}</td>
               <td>{x.priority}</td>
               <td>{from === 'bucket' ? SLA(x.createdAt) : 'yes'}</td>
-              {from === 'picked-tickets' && <td>{SLA(x.pickedAt) }</td>}
+              {from === 'picked-tickets' && <td>{SLA(x.pickedAt)}</td>}
 
               <td>
                 {from === "bucket" ? <ExternalLink size={17} onClick={() => onClick(x._id)} /> : <ExternalLink size={17} onClick={() => router.push(`/agent/tickets/${x._id}`)} />}

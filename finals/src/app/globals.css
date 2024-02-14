@@ -64,7 +64,17 @@ tr {
   background-color: transparent !important;
   color: rgba(255, 255, 255, 0.747) !important;
   outline: none;
-  border: 1px solig rgba(255, 255, 255, 0.747) !important;
+  border: 1px solid rgba(255, 255, 255, 0.747) !important;
+  border-radius: 10px;
+  min-width: 300px;
+}
+
+.myInput2 {
+  background-color: transparent !important;
+  color: rgba(0, 0, 0, 0.747) !important;
+  font-weight: 600;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.747) !important;
   border-radius: 10px;
   min-width: 300px;
 }
@@ -93,4 +103,13 @@ tr {
 .myBtnDanger:hover {
   color: red !important;
   border: 1px solid red;
+}
+
+.modal-content {
+  color: black !important;
+  background-color: rgb(136, 136, 255) !important;
+}
+
+.modal-content .modal-header {
+  border-bottom: 1px solid black !important;
 }
