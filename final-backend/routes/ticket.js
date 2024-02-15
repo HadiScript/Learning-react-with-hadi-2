@@ -22,6 +22,13 @@ const {
   allReponedTicketsOf_a_Agent,
   ticketDetail,
   gettingComments,
+  getMostReopenedTickets,
+  getOpenTickets,
+  getInProgressTickets,
+  getResolvedTickets,
+  getTicketCountByCategory,
+  getTicketSummary,
+  getUserResolvedAndPickedTickets,
 } = require("../controllers/tickets");
 
 const router = express.Router();
@@ -63,5 +70,13 @@ router.get("/all-tickets", verifyToken, allTickerts);
 router.get("/all-escalated-tickets", verifyToken, AdminAndManager, allEscalatedTickets);
 router.put("/assign-ticket", verifyToken, AdminAndManager, assignTicket);
 // available for assigning ticket, category by ticket remaining****
+
+router.get("/most-reopen", verifyToken, AdminAndManager, getMostReopenedTickets);
+router.get("/open-tickets", verifyToken, AdminAndManager, getOpenTickets);
+router.get("/inprogress-tickets", verifyToken, AdminAndManager, getInProgressTickets);
+router.get("/resolved-tickets", verifyToken, AdminAndManager, getResolvedTickets);
+router.get("/tickets-count-category", verifyToken, AdminAndManager, getTicketCountByCategory);
+router.get("/tickets-summary", verifyToken, AdminAndManager, getTicketSummary);
+router.get("/user-tickets", verifyToken, AdminAndManager, getUserResolvedAndPickedTickets);
 
 module.exports = router;

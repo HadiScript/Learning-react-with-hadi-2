@@ -509,7 +509,7 @@ const gettingComments = async (req, res, next) => {
   try {
     const data = await Ticket.find({ _id: req.params.ticketId }).select("comments").populate("comments");
 
-    res.json({ comments:data });
+    res.json({ comments: data });
   } catch (error) {
     console.error("Error updating ticket status:", error);
     return res.status(500).json({ ok: false, error: "Internal Server Error" });
@@ -573,6 +573,177 @@ const assignTicket = async (req, res, next) => {
   }
 };
 
+const getMostReopenedTickets = async (req, res, next) => {
+  try {
+    const maxReopenCount = await Ticket.find()
+      .sort({ reopenCount: -1 })
+      .limit(1)
+      .then((tickets) => tickets[0].reopenCount);
+    const mostReopenedTickets = await Ticket.find({ reopenCount: maxReopenCount });
+
+    res.status(200).json({ tickets: mostReopenedTickets });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getOpenTickets = async (req, res, next) => {
+  try {
+    const openTickets = await Ticket.find({ status: "Open" });
+    res.json(openTickets);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getInProgressTickets = async (req, res, next) => {
+  try {
+    const inProgressTickets = await Ticket.find({ status: "In Progress" });
+    res.json(inProgressTickets);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getResolvedTickets = async (req, res, next) => {
+  try {
+    const resolvedTickets = await Ticket.find({ status: "Resolved" });
+    res.json(resolvedTickets);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getTicketCountByCategory = async (req, res, next) => {
+  try {
+    const data = await Ticket.aggregate([
+      {
+        $group: {
+          _id: "$category",
+          ticketCount: { $sum: 1 },
+        },
+      },
+      {
+        $lookup: {
+          from: "categories", // This should match the name of your categories collection
+          localField: "_id",
+          foreignField: "_id",
+          as: "categoryDetails",
+        },
+      },
+      {
+        $unwind: "$categoryDetails",
+      },
+      {
+        $project: {
+          _id: 0,
+          category: "$categoryDetails.name",
+          ticketCount: 1,
+        },
+      },
+    ]);
+
+    res.json({ count: data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getTicketSummary = async (req, res, next) => {
+  try {
+    // Aggregate to calculate counts based on status
+    const statusCounts = await Ticket.aggregate([
+      {
+        $group: {
+          _id: "$status",
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+
+    // Calculate the maximum number of reopens
+    const mostReopenedCount = await Ticket.aggregate([
+      {
+        $group: {
+          _id: null,
+          maxReopenCount: { $max: "$reopenCount" },
+        },
+      },
+    ]);
+
+    // Prepare the response object
+    let response = {
+      allTicketCount: 0,
+      allResolvedTicketCount: 0,
+      allOpenTicketCount: 0,
+      allInProgressTicketCount: 0,
+      mostReopenTicketCount: mostReopenedCount.length > 0 ? mostReopenedCount[0].maxReopenCount : 0,
+    };
+
+    // Sum up total tickets and assign counts based on status
+    statusCounts.forEach((statusCount) => {
+      response.allTicketCount += statusCount.count;
+
+      switch (statusCount._id) {
+        case "Resolved":
+          response.allResolvedTicketCount = statusCount.count;
+          break;
+        case "Open":
+          response.allOpenTicketCount = statusCount.count;
+          break;
+        case "In Progress":
+          response.allInProgressTicketCount = statusCount.count;
+          break;
+      }
+    });
+
+    res.json({ summary: response });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getUserResolvedAndPickedTickets = async (req, res, next) => {
+  try {
+    // Aggregate resolved tickets
+    const resolvedTicketsAggregation = await Ticket.aggregate([
+      { $match: { status: "Resolved" } }, // Filter for resolved tickets
+      { $group: { _id: "$resolvedBy", resolvedCount: { $sum: 1 } } }, // Group by resolvedBy and count
+    ]);
+
+    // Aggregate picked tickets
+    const pickedTicketsAggregation = await Ticket.aggregate([
+      { $match: { status: { $ne: "Resolved" } } }, // Filter for non-resolved (picked) tickets
+      { $group: { _id: "$pickedBy", pickedCount: { $sum: 1 } } }, // Group by pickedBy and count
+    ]);
+
+    // Map of resolved and picked ticket counts by user ID
+    let resolvedMap = {};
+    resolvedTicketsAggregation.forEach((item) => {
+      if (item._id) resolvedMap[item._id.toString()] = item.resolvedCount;
+    });
+
+    let pickedMap = {};
+    pickedTicketsAggregation.forEach((item) => {
+      if (item._id) pickedMap[item._id.toString()] = item.pickedCount;
+    });
+
+    // Find all agents
+    const agents = await User.find({ role: "agent" });
+
+    // Map agents to their resolved and picked ticket counts
+    const agentsWithTicketCounts = agents.map((agent) => ({
+      userInfo: agent,
+      resolvedTickets: resolvedMap[agent._id.toString()] || 0,
+      pickedTickets: pickedMap[agent._id.toString()] || 0,
+    }));
+
+    res.json({ agentsWithTicketCounts });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createTicket,
   pickTicket,
@@ -595,4 +766,12 @@ module.exports = {
   allReponedTicketsOf_a_Agent,
   ticketDetail,
   gettingComments,
+  getMostReopenedTickets,
+
+  getOpenTickets,
+  getInProgressTickets,
+  getResolvedTickets,
+  getTicketCountByCategory,
+  getTicketSummary,
+  getUserResolvedAndPickedTickets,
 };

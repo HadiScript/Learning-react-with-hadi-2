@@ -18,9 +18,17 @@ const LandingPage = () => {
               Login
             </Link>
           ) : (
-            <Link className="_link" href={"/agent"}>
-              dashbaord
-            </Link>
+            <>
+              {auth?.role === "agent" ? (
+                <Link className="_link" href={"/agent"}>
+                  dashbaord
+                </Link>
+              ) : (
+                <Link className="_link" href={"/admin"}>
+                  dashbaord
+                </Link>
+              )}
+            </>
           )}
         </button>
       </div>

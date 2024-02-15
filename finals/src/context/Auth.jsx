@@ -26,6 +26,9 @@ const AuthProvider = ({ children }) => {
 
   // axios.defaults.baseURL = "http://localhost:8000";
 
+
+  axios.defaults.withCredentials = true
+
   return <AuthContext.Provider value={[auth, setAuth]}>{children}</AuthContext.Provider>;
 };
 
