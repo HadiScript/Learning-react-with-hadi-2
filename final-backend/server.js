@@ -33,11 +33,16 @@ connectDB();
 
 // routes
 
-app.use("/auth", require("./routes/auth"));
-app.use("/category", require("./routes/category"));
-app.use("/ticket", require("./routes/ticket"));
-app.use("/user", require("./routes/users"));
-app.use("/", require("./routes/root")); // starter
+// app.listen(5000)
+// http://localhost:5000/auth/signup
+
+// app.use('/auth/signup', (req,res) => {})
+
+app.use("/auth", require("./routes/auth")); // authen
+app.use("/category", require("./routes/category")); //cateor
+app.use("/ticket", require("./routes/ticket")); //tickets
+app.use("/user", require("./routes/users")); // user
+app.use("/", require("./routes/root")); // starter //nothing
 
 app.all("*", (req, res) => {
   res.status(404);

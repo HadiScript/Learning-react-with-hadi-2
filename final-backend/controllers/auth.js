@@ -5,6 +5,8 @@ const errorHandler = require("../middleware/errorHandler");
 
 const register = async (req, res, next) => {
   const { name, email, password } = req.body;
+  // const {data} = await axios.post(url, {} )
+  // const {data} = await axios.post(url, {} )
 
   if (!name || !email || !password) {
     return next(errorHandler(400, "User not found!"));

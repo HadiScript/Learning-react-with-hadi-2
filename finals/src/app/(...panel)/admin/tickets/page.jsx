@@ -1,18 +1,35 @@
 import React from "react";
 
 const AllTickets = () => {
+  // const [current, setCurrent] =  useState("allTickets")
+
   return <div>
 
-    All Tickets - API - /tickets/all-tickets
+    {/* Buttons  -> All Tickets, Resoled Tickets, Open Tickets, InProgress Tickets, most reopen tickets */}
+    {/* onClick={()=>setCurrent('resolvedTicets')} */}
+
+    {/* conditional Rendering
+    
+      {
+        current === 'allTickets' && <AllTicket  /> 
+      }
+
+
+       {
+        current === 'resolvedTickets' && <ResolvedTicket  /> 
+      }
+    
+    
+    */}
+
+
+    API
     <br />
+    All Tickets - API - /tickets/all-tickets {/* (defualt) -> Table */}
+
     Resolved Tickets API - /tickets/resolved-tickets
-    <br />
     most-reopen Tickets API - /tickets/most-reopen
-
-
-    <br />
     open-tickets Tickets API - /tickets/open-tickets
-    <br />
     inprogress-tickets Tickets API - /tickets/inprogress-tickets
 
 

@@ -6,7 +6,12 @@ const router = express.Router();
 
 router.get("/available-for-handover", verifyToken, isAgent, AvailableUsersforHandoverTickets);
 
+router.get("/all-agents", (req, res) => {});
+router.get("/all-clients", (req, res) => {});
 
+router.get("/:id"); // users/
+
+router.get("/all-agents-for-assign-tc/:ticketId");
 
 // just for check, not for production
 router.get("/all-users", async (req, res, next) => {
@@ -19,6 +24,5 @@ router.get("/all-users", async (req, res, next) => {
     // next(error);
   }
 });
-
 
 module.exports = router;

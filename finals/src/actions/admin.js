@@ -81,3 +81,39 @@ export const getAgentSummary = () => {
 
   return { data, loading };
 };
+
+export const getAllEscTickets = () => {
+  const [loading, setLoading] = useState(false);
+  const [list, setList] = useState([]);
+  const [agents, setAgents] = useState([]);
+
+  const fetchingList = async () => {
+    try {
+      const { data } = await axios.get(`${API}/tickets/all-escalated-tickets`);
+      setList(data.tickets);
+    } catch (error) {
+      Errs(error);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchingList();
+  }, []);
+
+  const getAllAvailableAgents = async (tcId) => {
+    try {
+      const { data } = await axios.get(`${API}/users/all-agents-for-assign-tc/${tcId}`);
+      setAgents(data.users);
+    } catch (error) {
+      Errs(error);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { list, loading, agent, getAllAvailableAgents };
+};

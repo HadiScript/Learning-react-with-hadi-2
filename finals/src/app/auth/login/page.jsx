@@ -2,15 +2,18 @@
 
 import { useCommon } from "@/actions/common";
 import FormButton from "@/components/common/FormButton";
+import { _useAuth } from "@/context/Auth";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { LogIn } from "react-feather";
 
 const Login = () => {
-  const { loading, loginData, Login, changeHandler } = useCommon();
+  const { loading: authloading, loginData, Login, changeHandler } = useCommon();
+  const [auth, setAuth, loading] = _useAuth();
 
 
 
-  return (
+  return !loading && auth ? redirect('/') : (
     <div style={{ minHeight: "100vh" }} className="d-flex flex-column gap-3 justify-content-center align-items-center">
 
       <div style={{ minWidth: "360px" }} className="border rounded-3 p-3 ">
@@ -29,7 +32,7 @@ const Login = () => {
             <input value={loginData.password} onChange={changeHandler} name="password" type="password" className="form-control myInput" />
           </div>
 
-          <div className="text-center">   <FormButton isLoading={loading} type={"submit"}>Login</FormButton></div>
+          <div className="text-center">   <FormButton isLoading={authloading} type={"submit"}>Login</FormButton></div>
         </form>
       </div>
 

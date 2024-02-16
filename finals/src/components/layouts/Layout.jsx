@@ -1,11 +1,22 @@
 import { Col, Container, Row } from "react-bootstrap";
 import Sidebar from "./Sidebar";
 import { Menu } from "react-feather";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Drawer from "./Drawer";
+import { _useAuth } from "@/context/Auth";
+import { redirect } from "next/navigation";
 
 const Layout = ({ children }) => {
   const [open, setOpen] = useState(false);
+  const [auth, setAuth, loading] = _useAuth();
+
+
+  useEffect(() => {
+    if (!auth && loading) {
+      return redirect('/auth/login')
+    }
+  }, [auth])
+
 
   return (
     <>

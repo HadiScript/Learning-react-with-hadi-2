@@ -50,12 +50,7 @@ export const AgentLinks = [
     topGap: true,
   },
 
-  {
-    path: "",
-    title: "Logout",
-    icon: <LogOut size={18} />,
-    topGap: false,
-  },
+
 ];
 
 
@@ -106,12 +101,7 @@ export const AdminLinks = [
     topGap: true,
   },
 
-  {
-    path: "",
-    title: "Logout",
-    icon: <LogOut size={18} />,
-    topGap: false,
-  },
+
 ];
 
 
